@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Page Not Found — Stackly</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+  .error-page { min-height: 100vh; display: grid; place-items: center; padding: 32px 20px; text-align: center; background: linear-gradient(rgba(14,13,11,.62), rgba(14,13,11,.72)), url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?fm=webp&fit=crop&w=900&q=35') center / cover no-repeat; }
+  .error-card { max-width: 620px; padding: clamp(32px, 7vw, 64px); background: rgba(254,252,249,.94); border: 1px solid rgba(255,255,255,.45); border-radius: var(--r-lg); box-shadow: var(--shadow-md); backdrop-filter: blur(8px); }
+  .error-code { color: var(--coral-deep); font-size: 13px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
+  .error-card h1 { margin: 12px 0; font-size: clamp(44px, 8vw, 76px); }
+  .error-card p { margin: 0 auto 28px; max-width: 42ch; color: var(--ink-soft); }
+  .error-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+  .error-actions button { min-height: 48px; padding: 12px 24px; border: 1px solid var(--ink); border-radius: var(--r-pill); background: transparent; color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+  .error-actions button:hover { background: var(--ink); color: var(--white); }
+  .error-footer { padding: 18px 20px; background: rgba(14,13,11,.92); color: rgba(255,255,255,.78); text-align: center; font-size: 13px; line-height: 1.7; }
+  .error-footer a { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+</style>
+</head>
+<body>
+<main class="error-page">
+  <div class="error-card">
+    <p class="error-code">404 · Page not found</p>
+    <h1>That page isn’t here.</h1>
+    <p>The button you selected led to a page that could not be found. Go back to the previous page or return to Stackly’s home page.</p>
+    <div class="error-actions">
+      <button type="button" onclick="if (history.length > 1) history.back(); else location.href = 'index.html';">Previous Page</button>
+      <a class="btn btn--coral btn--lg" href="index.html">Home</a>
+    </div>
+  </div>
+</main>
+<footer class="error-footer">
+  <p>MMR Complex, Chinna Thirupathi, Salem, Tamil Nadu 636008, India</p>
+  <p><a href="mailto:hello@stackly.edu">hello@stackly.edu</a> · <a href="tel:+919876543210">+91 98765 43210</a></p>
+</footer>
+</body>
+</html>

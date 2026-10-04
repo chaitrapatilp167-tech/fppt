@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Our Story & Sustainability — Stackly considered clothing.">
+<title>Our Story &amp; Sustainability — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+  /* Elevated Hero for About */
+  .elevated-hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 64px;
+    overflow: hidden;
+  }
+  .elevated-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .elevated-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .elevated-hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 8, 0.4);
+  }
+  .elevated-hero__content {
+    max-width: 700px;
+    padding: 0 24px;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .elevated-hero h1 {
+    font-size: clamp(40px, 5.5vw, 72px);
+    margin-bottom: 16px;
+    color: var(--white);
+    line-height: 1.05;
+  }
+  .elevated-hero p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+  }
+  
+  /* Image & Text Blocks */
+  .story-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 96px;
+  }
+  .story-block--reverse .story-block__img {
+    order: 2;
+  }
+  .story-block--reverse .story-block__content {
+    order: 1;
+  }
+  .story-block__img img {
+    width: 100%;
+    border-radius: var(--r-md);
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+  }
+  .story-block__content h2 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: 24px;
+    line-height: 1.15;
+  }
+  .story-block__content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+  
+  /* Stats Strip */
+  .stats-strip {
+    background: var(--surface);
+    padding: 64px 0;
+    margin-bottom: 96px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .stats-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    text-align: center;
+  }
+  .stat-item h3 {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--coral);
+    margin-bottom: 8px;
+  }
+  .stat-item p {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+  }
+
+  /* Team Section */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-bottom: 96px;
+  }
+  .team-member {
+    text-align: center;
+  }
+  .team-member img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: var(--r-md);
+    margin-bottom: 16px;
+  }
+  .team-member h4 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .team-member p {
+    font-size: 13px;
+    color: var(--coral);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 900px) {
+    .story-block {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 64px;
+    }
+    .team-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+  <button class="search-overlay__close" id="searchClose" aria-label="Close search">×</button>
+  <div class="search-overlay__inner">
+    <label class="search-overlay__label" for="searchInput">Search Stackly</label>
+    <input class="search-overlay__input" id="searchInput" type="search" placeholder="Wool coat, silk dress…" autocomplete="off">
+    <div class="search-overlay__results" id="searchResults"></div>
+  </div>
+</div>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="16" viewBox="0 0 22 16"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <a href="index.html" class="logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="logo-img"></a>
+    <nav class="main-nav" data-nav-menu>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html" class="is-active">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="women.html">Women</a>
+      <a href="men.html">Men</a>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn" data-search-trigger aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="header-auth">
+        <a href="login.html" class="btn-login">Log In</a>
+        <a href="login.html#signup" class="btn-get-started">Get Started</a>
+      </div>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="count-badge" data-wishlist-count>0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="count-badge" data-cart-count>0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ELEVATED HERO -->
+  <div class="elevated-hero">
+    <div class="elevated-hero__bg">
+      <img src="https://images.unsplash.com/photo-1544441893-675973e31985?q=35&w=900&fm=webp&fit=crop" alt="Stackly Studio">
+    </div>
+    <div class="elevated-hero__content">
+      <p class="eyebrow eyebrow--coral" style="margin-bottom:16px; color: var(--coral-light);">Our Philosophy</p>
+      <h1>Considered Clothing, Built to Endure</h1>
+      <p>Founded in London, Stackly was born out of a desire to create an antidote to fast fashion — pieces made exclusively from natural fibres, crafted by master artisans.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- STORY BLOCK 1: THE FOUNDER -->
+    <div class="story-block">
+      <div class="story-block__img">
+        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=35&w=900&fm=webp&fit=crop" alt="Stackly Founder & Atelier">
+      </div>
+      <div class="story-block__content">
+        <p class="eyebrow eyebrow--coral">A Note From Our Founder</p>
+        <h2>"We measure success not by how many pieces we sell, but by how long they remain in your wardrobe."</h2>
+        <p>When we launched Stackly in 2018, we set a strict rule: if a garment cannot be repaired, resoled, or biodegrade back into the earth at the end of its life, we do not make it.</p>
+        <p>We work directly with heritage mills across Europe and Asia, cutting out intermediaries so we can invest in superior craftsmanship while maintaining fair prices. We believe that truly luxurious clothing should be lived in, repaired, and passed down.</p>
+        <div style="margin-top:32px;font-family:var(--font-display);font-size:24px;color:var(--coral);">
+          — Eleanor Vance, Founder &amp; Creative Director
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY BLOCK 2: THE PROCESS (REVERSED) -->
+    <div class="story-block story-block--reverse">
+      <div class="story-block__img">
+        <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?q=35&w=900&fm=webp&fit=crop" alt="Craftsmanship and Tailoring">
+      </div>
+      <div class="story-block__content">
+        <p class="eyebrow eyebrow--coral">Uncompromising Quality</p>
+        <h2>Crafted by Masters of the Trade</h2>
+        <p>From the spinning of virgin wool in Biella, Italy, to the slow weaving of 14oz selvedge denim in Okayama, Japan, every Stackly garment is a testament to human skill.</p>
+        <p>We partner with family-owned ateliers who have honed their craft for generations. This deep respect for tradition results in clothing that not only looks exceptional but grows richer with time.</p>
+        <a href="shop.html" class="btn btn--coral" style="margin-top: 16px;">Explore the Collection</a>
+      </div>
+    </div>
+
+    <!-- STORY BLOCK 3: TEXTILES (NEW) -->
+    <div class="story-block">
+      <div class="story-block__img">
+        <img src="https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?q=35&w=900&fm=webp&fit=crop" alt="Premium Textiles">
+      </div>
+      <div class="story-block__content">
+        <p class="eyebrow eyebrow--coral">The Fabric of our Lives</p>
+        <h2>Sourcing the World's Finest Materials</h2>
+        <p>Our design process always begins with the fabric. Before a single sketch is drawn, our team spends months sourcing and developing bespoke textiles that meet our rigorous standards for durability, drape, and environmental impact.</p>
+        <p>We believe that luxury is tactile. Whether it's the crisp structure of our heavy-weight organic poplin or the buttery softness of our recycled cashmere blends, you can feel the Stackly difference the moment you touch our garments.</p>
+      </div>
+    </div>
+
+    <!-- STORY BLOCK 4: SUSTAINABILITY (REVERSED) -->
+    <div class="story-block story-block--reverse">
+      <div class="story-block__img">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=35&w=900&fm=webp&fit=crop" alt="Forest and Nature Sustainability">
+      </div>
+      <div class="story-block__content">
+        <p class="eyebrow eyebrow--coral">Our Commitment to the Earth</p>
+        <h2>Designing for Circularity</h2>
+        <p>We use exclusively natural, biodegradable fibres—such as certified organic cotton, recycled cashmere, and responsibly sourced linen. Synthetic plastics like polyester and nylon are completely banned from our collections, ensuring our garments never release microplastics into our oceans.</p>
+        <p>Beyond our materials, our facilities operate on 100% renewable energy, and we offset all shipping emissions to remain a carbon-neutral company. When you are done with a Stackly piece, our take-back program ensures it is recycled into new yarn.</p>
+        <a href="care.html" class="btn btn--outline" style="margin-top: 16px;">Learn about Care &amp; Repair</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>100%</h3>
+          <p>Traceable Natural Fibres</p>
+        </div>
+        <div class="stat-item">
+          <h3>0</h3>
+          <p>Synthetic Plastics Used</p>
+        </div>
+        <div class="stat-item">
+          <h3>12</h3>
+          <p>Heritage Partner Mills</p>
+        </div>
+        <div class="stat-item">
+          <h3>Life</h3>
+          <p>Complimentary Repairs</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- TEAM SECTION -->
+    <div class="section__head text-center" style="display:block;margin-bottom:56px;">
+      <p class="eyebrow eyebrow--coral">Behind the Seams</p>
+      <h2>Meet the Leadership Team</h2>
+    </div>
+    <div class="team-grid">
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=35&w=600&fm=webp&fit=crop" alt="Eleanor Vance">
+        <h4>Eleanor Vance</h4>
+        <p>Founder &amp; Creative Director</p>
+      </div>
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=35&w=600&fm=webp&fit=crop" alt="Marcus Chen">
+        <h4>Marcus Chen</h4>
+        <p>Head of Sustainability</p>
+      </div>
+      <div class="team-member">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=35&w=600&fm=webp&fit=crop" alt="Sophia Rossi">
+        <h4>Lead Menswear Designer</h4>
+        <p>Head of Design</p>
+      </div>
+    </div>
+
+    <!-- ATELIER MAP LOCATIONS -->
+    <section class="section" style="padding-bottom:96px;">
+      <div class="section__head text-center" style="display:block;margin-bottom:56px;">
+        <p class="eyebrow eyebrow--coral">Global Crafts</p>
+        <h2>Our Atelier Locations</h2>
+      </div>
+      <div class="grid grid--3">
+        <div class="value-item" style="background:var(--surface);border-radius:var(--r-md);text-align:left;padding:40px;box-shadow:0 2px 16px rgba(0,0,0,0.03);">
+          <h4 style="font-size:24px;font-family:var(--font-display);margin-bottom:12px;">Biella, Italy</h4>
+          <p class="eyebrow eyebrow--coral" style="margin-bottom:16px;">Virgin Wool &amp; Cashmere Spinning</p>
+          <p style="color:var(--ink-soft);line-height:1.7;">Home to the world's finest wool processing. Water from the Alps naturally washes the fibres, producing incomparable softness and durability for our knitwear.</p>
+        </div>
+        <div class="value-item" style="background:var(--surface);border-radius:var(--r-md);text-align:left;padding:40px;box-shadow:0 2px 16px rgba(0,0,0,0.03);">
+          <h4 style="font-size:24px;font-family:var(--font-display);margin-bottom:12px;">Porto, Portugal</h4>
+          <p class="eyebrow eyebrow--coral" style="margin-bottom:16px;">Leather Goods &amp; Footwear</p>
+          <p style="color:var(--ink-soft);line-height:1.7;">Third-generation cobblers hand-stitch our Goodyear-welted leather Chelsea boots and vegetable-tanned leather totes using traditional techniques.</p>
+        </div>
+        <div class="value-item" style="background:var(--surface);border-radius:var(--r-md);text-align:left;padding:40px;box-shadow:0 2px 16px rgba(0,0,0,0.03);">
+          <h4 style="font-size:24px;font-family:var(--font-display);margin-bottom:12px;">Okayama, Japan</h4>
+          <p class="eyebrow eyebrow--coral" style="margin-bottom:16px;">Selvedge Denim Weaving</p>
+          <p style="color:var(--ink-soft);line-height:1.7;">Vintage Toyoda shuttle looms weave our 14oz rigid denim at slow speeds for maximum strength, durability, and a unique character that fades beautifully.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PRESS BAR -->
+  <div class="press-bar">
+    <div class="wrap">
+      <div class="press-bar__head">As Featured In</div>
+      <div class="press-logos">
+        <span class="press-logo">VOGUE</span>
+        <span class="press-logo">GQ</span>
+        <span class="press-logo">MONOCLE</span>
+        <span class="press-logo">KINFOLK</span>
+        <span class="press-logo">WALLPAPER*</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="footer-logo-img"></a>
+        <p class="footer-tagline">Considered clothing made from natural fibres, thoughtfully constructed for repeat wear and backed by complimentary lifetime repairs.</p><div class="footer-socials" role="group" aria-label="Social media">
+          <a class="social-icon" href="404.html" aria-label="Google" title="Google"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M21.35 12.23c0-.72-.06-1.42-.18-2.09H12v3.95h5.23a4.48 4.48 0 0 1-1.94 2.94v2.46h3.14c1.84-1.69 2.92-4.18 2.92-7.26ZM12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.14-2.46c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.71-5.47-4.01H3.28v2.54A9.75 9.75 0 0 0 12 21.75ZM6.53 13.84a5.85 5.85 0 0 1 0-3.68V7.62H3.28a9.75 9.75 0 0 0 0 8.76l3.25-2.54ZM12 6.15c1.43 0 2.72.49 3.73 1.47l2.8-2.8A9.36 9.36 0 0 0 12 2.25a9.75 9.75 0 0 0-8.72 5.37l3.25 2.54C7.3 7.86 9.46 6.15 12 6.15Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="X (Twitter)" title="X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.4 5.4 22H2.2l7.3-8.4L1.7 2h6.5l4.4 6.9L18.9 2Zm-1.1 17.9h1.7L7.2 4H5.4l12.4 15.9Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3h2.8v8z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M23 7a3 3 0 0 0-2.1-2.1C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7a31 31 0 0 0-.5 5 31 31 0 0 0 .5 5 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 17a31 31 0 0 0 .5-5 31 31 0 0 0-.5-5zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="men.html">Men</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="404.html">Footwear</a></li>
+          <li><a href="404.html">Accessories</a></li>
+          <li><a href="404.html">Garment Care &amp; Repairs</a></li>
+          <li><a href="404.html">Tracker</a></li>
+          <li><a href="404.html">Shipping &amp; Returns</a></li>
+          <li><a href="404.html">Customer Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><a href="mailto:hello@stackly.edu">hello@stackly.edu</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>MMR Complex, Chinna Thirupathi,<br>Salem, Tamil Nadu 636008, India</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 Stackly Studio. All rights reserved.</span>
+    <div class="footer-bottom__links"><a href="404.html">Privacy Policy</a><a href="404.html">Terms of Service</a></div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/route-content-buttons-404.js"></script>
+</body>
+</html>

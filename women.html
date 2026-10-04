@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Shop the Women's collection — Stackly considered clothing.">
+<title>Women's Collection — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+  /* Elevated Shop Hero */
+  .elevated-hero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .elevated-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .elevated-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .elevated-hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 25, 22, 0.3);
+  }
+  .elevated-hero__content {
+    max-width: 600px;
+    padding: 0 24px;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .elevated-hero h1 {
+    font-size: clamp(40px, 5vw, 72px);
+    margin-bottom: 12px;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .elevated-hero p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+  }
+  
+  /* Feature Strip */
+  .category-nav {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .category-nav a {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    transition: color 0.2s;
+  }
+  .category-nav a:hover {
+    color: var(--coral);
+  }
+
+  /* Enhanced Filter Sidebar */
+  .filter-sidebar {
+    background: var(--surface);
+    padding: 32px 24px;
+    border-radius: var(--r-md);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  }
+  .filter-group:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .shop-toolbar {
+    padding: 16px 24px;
+    background: var(--surface);
+    border-radius: var(--r-md);
+    margin-bottom: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+  }
+  .shop-count {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .shop-layout {
+    gap: 40px;
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+  <button class="search-overlay__close" id="searchClose" aria-label="Close search">×</button>
+  <div class="search-overlay__inner">
+    <label class="search-overlay__label" for="searchInput">Search Stackly</label>
+    <input class="search-overlay__input" id="searchInput" type="search" placeholder="Wool coat, silk dress…" autocomplete="off">
+    <div class="search-overlay__results" id="searchResults"></div>
+  </div>
+</div>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="16" viewBox="0 0 22 16"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <a href="index.html" class="logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="logo-img"></a>
+    <nav class="main-nav" data-nav-menu>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="women.html" class="is-active">Women</a>
+      <a href="men.html">Men</a>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn" data-search-trigger aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="header-auth">
+        <a href="login.html" class="btn-login">Log In</a>
+        <a href="login.html#signup" class="btn-get-started">Get Started</a>
+      </div>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="count-badge" data-wishlist-count>0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="count-badge" data-cart-count>0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ELEVATED WOMEN'S HERO -->
+  <div class="elevated-hero">
+    <div class="elevated-hero__bg">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=35&w=900&fm=webp&fit=crop" alt="Women's Collection">
+    </div>
+    <div class="elevated-hero__content">
+      <p class="eyebrow eyebrow--coral" style="margin-bottom:12px; color: var(--coral-light);">Womenswear</p>
+      <h1>The Women's Edit</h1>
+      <p>Architectural silhouettes, fluid silks, and uncompromising tailoring. Pieces designed to move with you through every aspect of life.</p>
+    </div>
+  </div>
+
+  <!-- CATEGORY NAV -->
+  <div class="category-nav">
+    <a href="#productGrid" onclick="document.querySelector('input[value=\'Dresses\']').click();">Dresses</a>
+    <a href="#productGrid" onclick="document.querySelector('input[value=\'Knitwear\']').click();">Knitwear</a>
+    <a href="#productGrid" onclick="document.querySelector('input[value=\'Outerwear\']').click();">Outerwear</a>
+    <a href="#productGrid" onclick="document.querySelector('input[value=\'Accessories\']').click();">Accessories</a>
+  </div>
+
+  <div class="wrap">
+    <!-- breadcrumb -->
+    <div class="breadcrumb" style="padding-top: 0; margin-bottom: 24px;">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb__sep">/</span>
+      <span id="breadcrumbCurrent">Women</span>
+    </div>
+
+    <div class="shop-layout">
+      <!-- SIDEBAR (No Category Filter for Women's page) -->
+      <aside class="filter-sidebar">
+        <!-- Collection Tags (acting as sub-categories) -->
+        <div class="filter-group">
+          <h4>Collection</h4>
+          <div id="tagFilters"></div>
+        </div>
+        <!-- Price -->
+        <div class="filter-group">
+          <h4>Price (INR)</h4>
+          <div id="priceFilters"></div>
+        </div>
+
+        <!-- Curator's Note Widget -->
+        <div style="background:var(--linen);padding:24px;border-radius:var(--r-sm);border: 1px solid var(--line);margin-top:32px;">
+          <h4 style="font-size:13px;font-weight:700;color:var(--coral);margin-bottom:12px;">Curator's Note</h4>
+          <p style="font-size:13px;color:var(--ink-soft);line-height:1.7;font-style:italic;">"This season, focus on layering our lightweight silks under heavier wool coats for a masterful play on texture."</p>
+        </div>
+
+        <button class="filter-clear" id="clearFilters" style="margin-top:24px;width:100%;text-align:center;padding:12px;border:1px solid var(--line);border-radius:var(--r-sm);">✕ Clear all filters</button>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <div>
+        <!-- toolbar -->
+        <div class="shop-toolbar">
+          <p class="shop-count" id="resultCount"></p>
+          <div style="display:flex; gap:16px; align-items:center;">
+             <span style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color:var(--ink-muted);">Sort By:</span>
+             <select id="sortSelect" aria-label="Sort products">
+               <option value="featured">Featured</option>
+               <option value="price-asc">Price: Low to High</option>
+               <option value="price-desc">Price: High to Low</option>
+               <option value="name-asc">Name: A–Z</option>
+               <option value="rating">Best Rated</option>
+             </select>
+          </div>
+        </div>
+
+        <!-- active filter chips -->
+        <div class="active-filters" id="activeFilters"></div>
+
+        <!-- grid -->
+        <div class="grid" id="productGrid"></div>
+
+        <div class="empty-state" id="emptyState" style="display:none">
+          <h3>No products match those filters</h3>
+          <p>Try removing a filter or <a href="#" id="resetEmpty" style="color:var(--coral);text-decoration:underline;">browsing all womenswear</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="footer-logo-img"></a>
+        <p class="footer-tagline">Considered clothing made from natural fibres, thoughtfully constructed for repeat wear and backed by complimentary lifetime repairs.</p><div class="footer-socials" role="group" aria-label="Social media">
+          <a class="social-icon" href="404.html" aria-label="Google" title="Google"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M21.35 12.23c0-.72-.06-1.42-.18-2.09H12v3.95h5.23a4.48 4.48 0 0 1-1.94 2.94v2.46h3.14c1.84-1.69 2.92-4.18 2.92-7.26ZM12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.14-2.46c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.71-5.47-4.01H3.28v2.54A9.75 9.75 0 0 0 12 21.75ZM6.53 13.84a5.85 5.85 0 0 1 0-3.68V7.62H3.28a9.75 9.75 0 0 0 0 8.76l3.25-2.54ZM12 6.15c1.43 0 2.72.49 3.73 1.47l2.8-2.8A9.36 9.36 0 0 0 12 2.25a9.75 9.75 0 0 0-8.72 5.37l3.25 2.54C7.3 7.86 9.46 6.15 12 6.15Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="X (Twitter)" title="X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.4 5.4 22H2.2l7.3-8.4L1.7 2h6.5l4.4 6.9L18.9 2Zm-1.1 17.9h1.7L7.2 4H5.4l12.4 15.9Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3h2.8v8z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M23 7a3 3 0 0 0-2.1-2.1C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7a31 31 0 0 0-.5 5 31 31 0 0 0 .5 5 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 17a31 31 0 0 0 .5-5 31 31 0 0 0-.5-5zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="men.html">Men</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="404.html">Footwear</a></li>
+          <li><a href="404.html">Accessories</a></li>
+          <li><a href="404.html">Garment Care &amp; Repairs</a></li>
+          <li><a href="404.html">Tracker</a></li>
+          <li><a href="404.html">Shipping &amp; Returns</a></li>
+          <li><a href="404.html">Customer Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><a href="mailto:hello@stackly.edu">hello@stackly.edu</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>MMR Complex, Chinna Thirupathi,<br>Salem, Tamil Nadu 636008, India</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 Stackly Studio. All rights reserved.</span>
+    <div class="footer-bottom__links"><a href="404.html">Privacy Policy</a><a href="404.html">Terms of Service</a></div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const state = {
+    categories: ['Women'], // HARDCODED TO WOMEN
+    priceMax: null,
+    tags: params.get('tag') ? [params.get('tag')] : [],
+    sort: 'featured'
+  };
+
+  const priceEl  = document.getElementById('priceFilters');
+  const tagEl    = document.getElementById('tagFilters');
+  const gridEl   = document.getElementById('productGrid');
+  const countEl  = document.getElementById('resultCount');
+  const emptyEl  = document.getElementById('emptyState');
+  const sortSel  = document.getElementById('sortSelect');
+  const chipsEl  = document.getElementById('activeFilters');
+
+  const priceBands = [
+    { label:'Under ₹750', max:750 },
+    { label:'₹750 – ₹1,500', max:1500 },
+    { label:'₹1,500 – ₹2,500', max:2500 },
+    { label:'All prices', max:null }
+  ];
+  priceEl.innerHTML = priceBands.map((b, i) => `
+    <label class="filter-option">
+      <input type="radio" name="price" value="${b.max}" data-price-filter ${i === priceBands.length-1 ? 'checked' : ''}>
+      ${b.label}
+    </label>`).join('');
+
+  // Extract tags just for Women's products
+  const womenProducts = PRODUCTS.filter(p => p.category === 'Women');
+  const allTags = [...new Set(womenProducts.map(p => p.tag).filter(Boolean))];
+  
+  // Add some fake subcategories if tags are missing to make sidebar look full
+  const displayTags = allTags.length > 0 ? allTags : ['Dresses', 'Knitwear', 'Outerwear', 'Tops', 'Bottoms'];
+
+  tagEl.innerHTML = displayTags.map(t => `
+    <label class="filter-option">
+      <input type="checkbox" value="${t}" data-tag-filter ${state.tags.includes(t) ? 'checked' : ''}>
+      ${t}
+    </label>`).join('');
+
+  function updateChips() {
+    const chips = [];
+    state.tags.forEach(t => chips.push({ label: t, remove: () => { state.tags = state.tags.filter(x => x !== t); const el = tagEl.querySelector(`[value="${t}"]`); if(el) el.checked = false; render(); } }));
+    if (state.priceMax) chips.push({ label: `Under ₹${state.priceMax.toLocaleString('en-IN')}`, remove: () => { state.priceMax = null; priceEl.querySelectorAll('input')[priceBands.length-1].checked = true; render(); } });
+    
+    if (chips.length > 0) {
+      chipsEl.style.display = 'flex';
+      chipsEl.innerHTML = chips.map((ch, i) => `
+        <span class="filter-chip">${ch.label}<button data-chip="${i}" aria-label="Remove filter">×</button></span>`).join('');
+      chipsEl.querySelectorAll('[data-chip]').forEach(btn => {
+        btn.addEventListener('click', () => chips[Number(btn.dataset.chip)].remove());
+      });
+    } else {
+      chipsEl.style.display = 'none';
+      chipsEl.innerHTML = '';
+    }
+  }
+
+  function render() {
+    showSkeletons(gridEl, 6);
+    gridEl.style.display = 'grid';
+    emptyEl.style.display = 'none';
+
+    setTimeout(() => {
+      let list = PRODUCTS.filter(p => {
+        const catOk   = p.category === 'Women'; // ALWAYS TRUE
+        const priceOk = !state.priceMax || p.price <= state.priceMax;
+        
+        // Custom logic to handle fake tags acting as subcategories for this demo
+        let tagOk = state.tags.length === 0 || state.tags.includes(p.tag);
+        if(state.tags.length > 0 && !p.tag) {
+           // If they clicked "Dresses" but there's no tag, let's just do a string search for demo
+           tagOk = state.tags.some(t => p.name.toLowerCase().includes(t.toLowerCase()));
+        }
+
+        return catOk && priceOk && tagOk;
+      });
+
+      if (state.sort === 'price-asc')  list.sort((a,b) => a.price - b.price);
+      if (state.sort === 'price-desc') list.sort((a,b) => b.price - a.price);
+      if (state.sort === 'name-asc')   list.sort((a,b) => a.name.localeCompare(b.name));
+      if (state.sort === 'rating')     list.sort((a,b) => (b.rating||0) - (a.rating||0));
+
+      countEl.textContent = `${list.length} Item${list.length === 1 ? '' : 's'}`;
+      gridEl.style.display = list.length ? 'grid' : 'none';
+      emptyEl.style.display = list.length ? 'none' : 'block';
+      gridEl.innerHTML = list.map(productCardHTML).join('');
+      bindWishButtons(gridEl);
+      bindQuickAdd(gridEl);
+      updateChips();
+      initScrollAnimations();
+    }, 300);
+  }
+
+  priceEl.addEventListener('change', e => {
+    const v = e.target.value;
+    state.priceMax = v === 'null' || !v ? null : Number(v);
+    render();
+  });
+  tagEl.addEventListener('change', () => {
+    state.tags = [...tagEl.querySelectorAll('[data-tag-filter]:checked')].map(el => el.value);
+    render();
+  });
+  sortSel.addEventListener('change', () => { state.sort = sortSel.value; render(); });
+  document.getElementById('clearFilters').addEventListener('click', () => {
+    state.priceMax = null; state.tags = [];
+    tagEl.querySelectorAll('input').forEach(el => el.checked = false);
+    priceEl.querySelectorAll('input')[priceBands.length-1].checked = true;
+    render();
+  });
+  document.getElementById('resetEmpty').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('clearFilters').click();
+  });
+
+  render();
+});
+</script>
+<script src="js/route-content-buttons-404.js"></script>
+</body>
+</html>

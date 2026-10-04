@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Garment Care & Free Lifetime Repair Service — Stackly considered clothing.">
+<title>Care &amp; Free Repair Service — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+  /* Elevated Hero for Care */
+  .elevated-hero {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 80px;
+    overflow: hidden;
+  }
+  .elevated-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .elevated-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .elevated-hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 8, 0.5);
+  }
+  .elevated-hero__content {
+    max-width: 800px;
+    padding: 0 24px;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .elevated-hero h1 {
+    font-size: clamp(40px, 5.5vw, 64px);
+    margin-bottom: 16px;
+    color: var(--white);
+    line-height: 1.05;
+  }
+  .elevated-hero p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.9);
+  }
+
+  /* Material Guide Blocks */
+  .care-guide-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+  .care-guide-block--reverse {
+    direction: rtl;
+  }
+  .care-guide-block--reverse > * {
+    direction: ltr;
+  }
+  .care-guide-block__img img {
+    width: 100%;
+    border-radius: var(--r-md);
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  }
+  .care-guide-block__content h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .care-guide-block__content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .care-steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .care-steps li {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+  .care-steps li::before {
+    content: '✓';
+    color: var(--coral);
+    font-weight: bold;
+  }
+
+  /* Form Section */
+  .repair-form-wrapper {
+    background: var(--surface);
+    padding: 64px 0;
+    margin-top: 64px;
+    border-top: 1px solid var(--line);
+  }
+  .repair-form-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--white);
+    padding: 48px;
+    border-radius: var(--r-lg);
+    box-shadow: 0 12px 48px rgba(0,0,0,0.04);
+    border: 1px solid var(--line);
+  }
+  
+  @media (max-width: 900px) {
+    .care-guide-block {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .repair-form-inner {
+      padding: 32px 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+  <button class="search-overlay__close" id="searchClose" aria-label="Close search">×</button>
+  <div class="search-overlay__inner">
+    <label class="search-overlay__label" for="searchInput">Search Stackly</label>
+    <input class="search-overlay__input" id="searchInput" type="search" placeholder="Wool coat, silk dress…" autocomplete="off">
+    <div class="search-overlay__results" id="searchResults"></div>
+  </div>
+</div>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="16" viewBox="0 0 22 16"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <a href="index.html" class="logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="logo-img"></a>
+    <nav class="main-nav" data-nav-menu>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="women.html">Women</a>
+      <a href="men.html">Men</a>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn" data-search-trigger aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="header-auth">
+        <a href="login.html" class="btn-login">Log In</a>
+        <a href="login.html#signup" class="btn-get-started">Get Started</a>
+      </div>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="count-badge" data-wishlist-count>0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="count-badge" data-cart-count>0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ELEVATED HERO -->
+  <div class="elevated-hero">
+    <div class="elevated-hero__bg">
+      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=35&w=900&fm=webp&fit=crop" alt="Tailoring and Garment Repair">
+    </div>
+    <div class="elevated-hero__content">
+      <p class="eyebrow eyebrow--coral" style="margin-bottom:16px; color: var(--coral-light);">Free Service For Life</p>
+      <h1>Garment Care &amp; Repair</h1>
+      <p>Extending the lifespan of a garment by just 9 months reduces its environmental footprint by 30%. That's why we repair any Stackly piece free of charge for life.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- CARE GUIDE INTRO -->
+    <div class="section__head text-center" style="display:block;margin-bottom:64px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      <p class="eyebrow eyebrow--coral">Maintenance Guide</p>
+      <h2>How to Care for Stackly</h2>
+      <p style="color:var(--ink-soft); margin-top: 16px;">Proper care is the foundation of sustainability. We recommend washing less, airing out more, and following these specific guidelines for our signature natural fibres.</p>
+    </div>
+
+    <!-- WOOL & CASHMERE -->
+    <div class="care-guide-block">
+      <div class="care-guide-block__img">
+        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?fm=webp&fit=crop&w=900&q=35" alt="Folded wool knitwear" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1512436991641-6745cdb1723f?fm=webp&fit=crop&w=900&q=35'">
+      </div>
+      <div class="care-guide-block__content">
+        <div style="font-size: 32px; margin-bottom: 12px;">🧶</div>
+        <h2>Wool &amp; Cashmere</h2>
+        <p>Our heavy-weight wool and recycled cashmere are naturally antibacterial and stain-resistant. They require very little washing.</p>
+        <ul class="care-steps">
+          <li>Air out garments between wears rather than frequent washing to restore freshness.</li>
+          <li>Hand wash cold only when necessary, using a pH-neutral wool detergent.</li>
+          <li>Never wring or twist. Gently press the water out and dry flat on a clean towel.</li>
+          <li>Use a cashmere comb gently on areas of high friction to remove natural pilling.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MULBERRY SILK -->
+    <div class="care-guide-block care-guide-block--reverse">
+      <div class="care-guide-block__img">
+        <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=35&w=800&fm=webp&fit=crop" alt="Silky Fabric Drape">
+      </div>
+      <div class="care-guide-block__content">
+        <div style="font-size: 32px; margin-bottom: 12px;">✨</div>
+        <h2>Mulberry Silk</h2>
+        <p>Our silk is exceptionally durable when treated with care. It is highly breathable and regulates body temperature beautifully.</p>
+        <ul class="care-steps">
+          <li>Machine wash inside a delicate laundry bag on a cold, delicate cycle.</li>
+          <li>Use a specialist silk detergent to preserve the natural sheen of the fibres.</li>
+          <li>Never wring silk; instead, hang it to air dry away from direct sunlight.</li>
+          <li>Steam or iron on the coolest setting while the fabric is still slightly damp.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LEATHER GOODS -->
+    <div class="care-guide-block">
+      <div class="care-guide-block__img">
+        <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=35&w=800&fm=webp&fit=crop" alt="Leather Boots and Accessories">
+      </div>
+      <div class="care-guide-block__content">
+        <div style="font-size: 32px; margin-bottom: 12px;">👞</div>
+        <h2>Full-Grain Leather</h2>
+        <p>Our Portuguese vegetable-tanned leather will develop a rich, unique patina over time. Regular conditioning is the key to longevity.</p>
+        <ul class="care-steps">
+          <li>Wipe clean with a damp cloth to remove daily dust and dirt.</li>
+          <li>Apply an organic beeswax leather conditioner every 3 months to prevent drying out.</li>
+          <li>Insert cedar shoe trees into footwear immediately after every wear to maintain shape.</li>
+          <li>Allow wet leather to dry naturally away from radiators or direct heat sources.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOK A REPAIR FORM -->
+  <section class="repair-form-wrapper">
+    <div class="wrap">
+      
+      <div class="repair-form-inner">
+        <div class="section__head text-center" style="display:block;margin-bottom:40px;">
+          <p class="eyebrow eyebrow--coral">Complimentary Atelier Service</p>
+          <h2 style="font-size: 36px;">Book a Free Garment Repair</h2>
+          <p style="color:var(--ink-soft);margin-top:16px;">Whether it's a dropped hem, a missing button, or a worn lining, we will fix it. Fill out the details below to receive a pre-paid shipping label to send your garment directly to our studio.</p>
+        </div>
+
+        <form id="repairForm">
+          <div class="form-grid">
+            <div class="field"><label for="rpName">Full Name</label><input type="text" id="rpName" required placeholder="Alex Morgan"></div>
+            <div class="field"><label for="rpEmail">Email Address</label><input type="email" id="rpEmail" required placeholder="alex@example.com"></div>
+            <div class="field full"><label for="rpItem">Item Name or Order Number</label><input type="text" id="rpItem" required placeholder="e.g. Wool Overcoat (Order #STK-849201)"></div>
+            <div class="field full"><label for="rpType">Type of Repair Needed</label>
+              <select id="rpType" required>
+                <option value="stitch">Seam or Hem Re-stitching</option>
+                <option value="button">Button Replacement</option>
+                <option value="zip">Zipper Replacement</option>
+                <option value="lining">Lining Repair</option>
+                <option value="other">Other / Custom Touch-up</option>
+              </select>
+            </div>
+            <div class="field full"><label for="rpNotes">Additional Notes</label>
+              <textarea id="rpNotes" rows="4" placeholder="Please describe what needs attention..." style="width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:var(--r-sm);font-family:inherit;font-size:14px;resize:vertical;"></textarea>
+            </div>
+          </div>
+          <p class="auth-note" id="repairNote" style="color: var(--moss); font-weight: 600; margin-top: 16px;"></p>
+          <button type="submit" class="btn btn--coral btn--full btn--lg mt-24">Submit Free Repair Request</button>
+        </form>
+      </div>
+
+      <!-- FAQ ACCORDION -->
+      <div style="max-width: 680px; margin: 80px auto 0;">
+        <h3 style="font-size: 24px; margin-bottom: 24px; text-align: center;">Repair Service FAQ</h3>
+        <div class="accordion">
+          <details class="accordion-item">
+            <summary>What does the lifetime guarantee cover?</summary>
+            <div>Our lifetime repair guarantee covers all natural wear and tear. This includes dropped hems, unravelled seams, lost buttons, broken zippers, and lining replacements. It does not cover complete structural alterations (like resizing) or extreme damage outside of normal wear.</div>
+          </details>
+          <details class="accordion-item">
+            <summary>How long does a repair take?</summary>
+            <div>Most repairs are completed within 14 business days from the moment our atelier receives your garment. Complex lining replacements or major zipper work may take up to 21 days. We will notify you via email as soon as it ships back.</div>
+          </details>
+          <details class="accordion-item">
+            <summary>Do I have to pay for shipping?</summary>
+            <div>No. Once you submit a repair request, we will email you a pre-paid printable shipping label. We also cover the cost of shipping the repaired garment back to you.</div>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="footer-logo-img"></a>
+        <p class="footer-tagline">Considered clothing made from natural fibres, thoughtfully constructed for repeat wear and backed by complimentary lifetime repairs.</p><div class="footer-socials" role="group" aria-label="Social media">
+          <a class="social-icon" href="404.html" aria-label="Google" title="Google"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M21.35 12.23c0-.72-.06-1.42-.18-2.09H12v3.95h5.23a4.48 4.48 0 0 1-1.94 2.94v2.46h3.14c1.84-1.69 2.92-4.18 2.92-7.26ZM12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.14-2.46c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.71-5.47-4.01H3.28v2.54A9.75 9.75 0 0 0 12 21.75ZM6.53 13.84a5.85 5.85 0 0 1 0-3.68V7.62H3.28a9.75 9.75 0 0 0 0 8.76l3.25-2.54ZM12 6.15c1.43 0 2.72.49 3.73 1.47l2.8-2.8A9.36 9.36 0 0 0 12 2.25a9.75 9.75 0 0 0-8.72 5.37l3.25 2.54C7.3 7.86 9.46 6.15 12 6.15Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="X (Twitter)" title="X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.4 5.4 22H2.2l7.3-8.4L1.7 2h6.5l4.4 6.9L18.9 2Zm-1.1 17.9h1.7L7.2 4H5.4l12.4 15.9Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3h2.8v8z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M23 7a3 3 0 0 0-2.1-2.1C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7a31 31 0 0 0-.5 5 31 31 0 0 0 .5 5 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 17a31 31 0 0 0 .5-5 31 31 0 0 0-.5-5zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="men.html">Men</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="404.html">Footwear</a></li>
+          <li><a href="404.html">Accessories</a></li>
+          <li><a href="404.html">Garment Care &amp; Repairs</a></li>
+          <li><a href="404.html">Tracker</a></li>
+          <li><a href="404.html">Shipping &amp; Returns</a></li>
+          <li><a href="404.html">Customer Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><a href="mailto:hello@stackly.edu">hello@stackly.edu</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>MMR Complex, Chinna Thirupathi,<br>Salem, Tamil Nadu 636008, India</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 Stackly Studio. All rights reserved.</span>
+    <div class="footer-bottom__links"><a href="404.html">Privacy Policy</a><a href="404.html">Terms of Service</a></div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("repairForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const name = document.getElementById("rpName").value;
+    showToast(`Repair request received for ${name}`, "success");
+    document.getElementById("repairNote").textContent = "✓ Thank you! A pre-paid return shipping label has been sent to your email.";
+    
+    // Add styling to form to show it's disabled
+    const form = document.getElementById("repairForm");
+    const btn = form.querySelector('button');
+    btn.textContent = "Request Submitted";
+    btn.style.opacity = "0.7";
+    btn.disabled = true;
+    
+    // We don't reset so the user sees what they submitted, but we mark it complete
+  });
+});
+</script>
+<script src="js/route-content-buttons-404.js"></script>
+</body>
+</html>

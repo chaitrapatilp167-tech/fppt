@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Your Shopping Cart — Stackly considered clothing.">
+<title>Your Cart — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+</head>
+<body>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+  <button class="search-overlay__close" id="searchClose" aria-label="Close search">×</button>
+  <div class="search-overlay__inner">
+    <label class="search-overlay__label" for="searchInput">Search Stackly</label>
+    <input class="search-overlay__input" id="searchInput" type="search" placeholder="Wool coat, silk dress…" autocomplete="off">
+    <div class="search-overlay__results" id="searchResults"></div>
+  </div>
+</div>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false">
+      <svg width="22" height="16" viewBox="0 0 22 16"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+    </button>
+    <a href="index.html" class="logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="logo-img"></a>
+    <nav class="main-nav" data-nav-menu>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop All</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="women.html">Women</a>
+      <a href="men.html">Men</a>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn" data-search-trigger aria-label="Search">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <div class="header-auth">
+        <a href="login.html" class="btn-login">Log In</a>
+        <a href="login.html#signup" class="btn-get-started">Get Started</a>
+      </div>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span class="count-badge" data-wishlist-count>0</span>
+      </a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="count-badge" data-cart-count>0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="cart-page-head">
+      <h1>Your Shopping Cart</h1>
+      <p style="color:var(--ink-soft);margin-top:6px;">Items in your bag are reserved for 60 minutes.</p>
+    </div>
+
+    <div id="cartRoot"></div>
+  </div>
+
+  <section class="section section--surface" id="cartUpsellSection" style="margin-top:40px;">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>You might also like</h2>
+        <a href="shop.html">Shop all products →</a>
+      </div>
+      <div class="grid" id="cartUpsellGrid"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="footer-logo-img"></a>
+        <p class="footer-tagline">Considered clothing made from natural fibres, thoughtfully constructed for repeat wear and backed by complimentary lifetime repairs.</p><div class="footer-socials" role="group" aria-label="Social media">
+          <a class="social-icon" href="404.html" aria-label="Google" title="Google"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M21.35 12.23c0-.72-.06-1.42-.18-2.09H12v3.95h5.23a4.48 4.48 0 0 1-1.94 2.94v2.46h3.14c1.84-1.69 2.92-4.18 2.92-7.26ZM12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.14-2.46c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.71-5.47-4.01H3.28v2.54A9.75 9.75 0 0 0 12 21.75ZM6.53 13.84a5.85 5.85 0 0 1 0-3.68V7.62H3.28a9.75 9.75 0 0 0 0 8.76l3.25-2.54ZM12 6.15c1.43 0 2.72.49 3.73 1.47l2.8-2.8A9.36 9.36 0 0 0 12 2.25a9.75 9.75 0 0 0-8.72 5.37l3.25 2.54C7.3 7.86 9.46 6.15 12 6.15Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="X (Twitter)" title="X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.4 5.4 22H2.2l7.3-8.4L1.7 2h6.5l4.4 6.9L18.9 2Zm-1.1 17.9h1.7L7.2 4H5.4l12.4 15.9Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3h2.8v8z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M23 7a3 3 0 0 0-2.1-2.1C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7a31 31 0 0 0-.5 5 31 31 0 0 0 .5 5 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 17a31 31 0 0 0 .5-5 31 31 0 0 0-.5-5zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop All</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="women.html">Women</a></li>
+          <li><a href="men.html">Men</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="404.html">Footwear</a></li>
+          <li><a href="404.html">Accessories</a></li>
+          <li><a href="404.html">Garment Care &amp; Repairs</a></li>
+          <li><a href="404.html">Tracker</a></li>
+          <li><a href="404.html">Shipping &amp; Returns</a></li>
+          <li><a href="404.html">Customer Care</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><a href="mailto:hello@stackly.edu">hello@stackly.edu</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>MMR Complex, Chinna Thirupathi,<br>Salem, Tamil Nadu 636008, India</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 Stackly Studio. All rights reserved.</span>
+    <div class="footer-bottom__links"><a href="404.html">Privacy Policy</a><a href="404.html">Terms of Service</a></div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+let appliedDiscount = 0;
+let isGiftWrapped = false;
+let selectedSample = "wool";
+
+function renderCartPage() {
+  const cart = getCart();
+  const root = document.getElementById("cartRoot");
+
+  if (cart.length === 0) {
+    root.innerHTML = `
+      <div class="cart-empty">
+        <h2>Your bag is currently empty</h2>
+        <p>Explore our latest collection of natural fibre clothing and accessories.</p>
+        <a href="shop.html" class="btn btn--coral btn--lg">Explore the collection</a>
+      </div>`;
+    return;
+  }
+
+  const subtotal = cartSubtotal();
+  const freeShippingThreshold = 1500;
+  const remainingForFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+  const freeShippingPercent = Math.min(100, (subtotal / freeShippingThreshold) * 100);
+  const shippingCost = subtotal >= freeShippingThreshold ? 0 : 150;
+  const giftCost = isGiftWrapped ? 100 : 0;
+  const discountAmount = (subtotal * appliedDiscount);
+  const finalTotal = Math.max(0, subtotal - discountAmount + shippingCost + giftCost);
+
+  const linesHTML = cart.map((line, i) => {
+    const p = getProductById(line.id);
+    if (!p) return "";
+    return `
+      <div class="cart-line">
+        <a href="product.html?id=${p.id}">
+          <img src="${productImage(p.seed, 200, 250)}" alt="${p.name}">
+        </a>
+        <div>
+          <h3 class="cart-line__name"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+          <p class="cart-line__meta">${line.color} · Size ${line.size} · ${formatPrice(p.price)} each</p>
+          <div class="cart-line__controls">
+            <div class="qty-row">
+              <button type="button" data-qty-minus="${i}" aria-label="Decrease quantity">–</button>
+              <span>${line.qty}</span>
+              <button type="button" data-qty-plus="${i}" aria-label="Increase quantity">+</button>
+            </div>
+            <button class="cart-line__remove" data-remove="${i}">Remove</button>
+          </div>
+        </div>
+        <p class="cart-line__price">${formatPrice(p.price * line.qty)}</p>
+      </div>`;
+  }).join('');
+
+  root.innerHTML = `
+    <div class="shipping-bar">
+      <div class="shipping-bar__text">
+        ${remainingForFreeShipping > 0
+          ? `Add <strong>${formatPrice(remainingForFreeShipping)}</strong> more to get <strong>Free Express Shipping</strong>!`
+          : `🎉 Congratulations! You unlocked <strong>Free Express Shipping</strong>.`
+        }
+      </div>
+      <div class="shipping-bar__track">
+        <div class="shipping-bar__fill" style="width: ${freeShippingPercent}%;"></div>
+      </div>
+    </div>
+
+    <div class="cart-layout">
+      <div class="cart-list">
+        ${linesHTML}
+
+        <!-- Complimentary Sample Selector -->
+        <div style="background:var(--surface);padding:20px;border-radius:var(--r-md);margin-top:24px;">
+          <h4 style="font-size:14px;font-weight:700;margin-bottom:6px;">Complimentary Fabric Care Sample</h4>
+          <p style="font-size:12px;color:var(--ink-soft);margin-bottom:12px;">Select 1 free sample to be included in your package:</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <label class="swatch ${selectedSample === 'wool' ? 'is-selected' : ''}" style="cursor:pointer;">
+              <input type="radio" name="sample" value="wool" ${selectedSample === 'wool' ? 'checked' : ''} style="display:none;"> Organic Wool Wash
+            </label>
+            <label class="swatch ${selectedSample === 'silk' ? 'is-selected' : ''}" style="cursor:pointer;">
+              <input type="radio" name="sample" value="silk" ${selectedSample === 'silk' ? 'checked' : ''} style="display:none;"> Delicate Silk Wash
+            </label>
+            <label class="swatch ${selectedSample === 'leather' ? 'is-selected' : ''}" style="cursor:pointer;">
+              <input type="radio" name="sample" value="leather" ${selectedSample === 'leather' ? 'checked' : ''} style="display:none;"> Beeswax Leather Balm
+            </label>
+          </div>
+        </div>
+
+        <!-- Gift Packaging Option -->
+        <div class="gift-box">
+          <label>
+            <input type="checkbox" id="giftCheck" ${isGiftWrapped ? 'checked' : ''} style="accent-color:var(--coral);width:18px;height:18px;">
+            🎁 Add Signature Stackly Gift Packaging (+₹100.00)
+          </label>
+          <p style="font-size:12px;color:var(--ink-soft);margin-top:6px;margin-left:28px;">Includes embossed luxury linen box, silk ribbon, and a hand-written gift card.</p>
+          ${isGiftWrapped ? `
+            <textarea id="giftMessage" placeholder="Write your personalized gift message here..." style="width:100%;margin-top:12px;padding:10px;border-radius:var(--r-sm);border:1px solid var(--line);font-family:inherit;font-size:13px;height:70px;"></textarea>
+          ` : ''}
+        </div>
+      </div>
+
+      <aside class="summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span>${formatPrice(subtotal)}</span></div>
+        ${isGiftWrapped ? `<div class="summary-row"><span>Gift Packaging</span><span>${formatPrice(100)}</span></div>` : ''}
+        ${appliedDiscount > 0 ? `<div class="summary-row" style="color:var(--coral);"><span>Promo Discount (15%)</span><span>-${formatPrice(discountAmount)}</span></div>` : ''}
+        <div class="summary-row"><span>Shipping</span><span>${shippingCost === 0 ? "Free" : formatPrice(shippingCost)}</span></div>
+        
+        <div class="promo-row">
+          <input type="text" id="promoInput" placeholder="Promo code (try ARDEN15)" value="${appliedDiscount > 0 ? 'ARDEN15' : ''}">
+          <button class="btn btn--outline" id="promoBtn" type="button">Apply</button>
+        </div>
+        <p class="promo-note" id="promoNote">${appliedDiscount > 0 ? '✓ 15% discount applied!' : ''}</p>
+
+        <div class="summary-row summary-row--total"><span>Total</span><span>${formatPrice(finalTotal)}</span></div>
+        
+        <a href="checkout.html" class="btn btn--coral btn--full btn--lg" style="margin-top:24px;">Proceed to Checkout</a>
+        <p style="text-align:center;font-size:12px;color:var(--ink-soft);margin-top:14px;">🔒 Secure 256-bit SSL encrypted checkout</p>
+      </aside>
+    </div>
+  `;
+
+  root.querySelectorAll("[data-remove]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = Number(btn.getAttribute("data-remove"));
+      const cart = getCart();
+      const removedItem = getProductById(cart[idx]?.id);
+      removeFromCart(idx);
+      if (removedItem) showToast(`Removed ${removedItem.name} from cart`, 'info');
+      renderCartPage();
+    });
+  });
+
+  root.querySelectorAll("[data-qty-minus]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = Number(btn.getAttribute("data-qty-minus"));
+      const cart = getCart();
+      updateCartQty(i, cart[i].qty - 1);
+      renderCartPage();
+    });
+  });
+
+  root.querySelectorAll("[data-qty-plus]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const i = Number(btn.getAttribute("data-qty-plus"));
+      const cart = getCart();
+      updateCartQty(i, cart[i].qty + 1);
+      renderCartPage();
+    });
+  });
+
+  root.querySelectorAll('input[name="sample"]').forEach(inp => {
+    inp.addEventListener("change", e => {
+      selectedSample = e.target.value;
+      showToast(`Selected free ${selectedSample} care sample`, "info");
+      renderCartPage();
+    });
+  });
+
+  const giftCheck = document.getElementById("giftCheck");
+  if (giftCheck) {
+    giftCheck.addEventListener("change", () => {
+      isGiftWrapped = giftCheck.checked;
+      showToast(isGiftWrapped ? "Gift packaging added (+₹100)" : "Gift packaging removed", "info");
+      renderCartPage();
+    });
+  }
+
+  const promoBtn = document.getElementById("promoBtn");
+  if (promoBtn) {
+    promoBtn.addEventListener("click", () => {
+      const val = document.getElementById("promoInput").value.trim().toUpperCase();
+      const note = document.getElementById("promoNote");
+      if (val === "ARDEN15" || val === "WELCOME15") {
+        appliedDiscount = 0.15;
+        showToast("Promo code ARDEN15 applied (-15%)!", "success");
+        renderCartPage();
+      } else if (!val) {
+        note.textContent = "Please enter a valid promo code.";
+      } else {
+        note.textContent = "Invalid code. Use code 'ARDEN15' for 15% off.";
+      }
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderCartPage();
+
+  const upsellGrid = document.getElementById("cartUpsellGrid");
+  const bestsellers = PRODUCTS.filter(p => p.tag === "Bestseller").slice(0, 4);
+  upsellGrid.innerHTML = bestsellers.map(p => productCardHTML(p)).join('');
+  bindWishButtons(upsellGrid);
+  bindQuickAdd(upsellGrid);
+});
+</script>
+<script src="js/route-content-buttons-404.js"></script>
+</body>
+</html>

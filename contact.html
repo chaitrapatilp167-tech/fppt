@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Stackly customer care for help with orders, products, and garment repairs.">
+<title>Contact Us — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+  .contact-page { padding: 72px 0 96px; }
+  .contact-intro { position: relative; isolation: isolate; width: 100vw; max-width: none; min-height: 360px; margin: -72px calc(50% - 50vw) 56px; padding: 72px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; border-radius: 0 0 var(--r-lg) var(--r-lg); text-align: center; color: var(--white); background: var(--indigo) url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?fm=webp&fit=crop&w=900&q=35') center 45% / cover no-repeat; }
+  .contact-intro::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(14,13,11,.72), rgba(14,13,11,.36)); }
+  .contact-intro .eyebrow { color: var(--coral-light); }
+  .contact-intro h1 { font-size: clamp(38px, 5vw, 58px); margin: 10px 0 16px; color: var(--white); }
+  .contact-intro p { max-width: 680px; color: rgba(255,255,255,.92); font-size: 17px; }
+  .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .contact-card { padding: 32px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .contact-card h2 { font-size: 22px; margin-bottom: 12px; }
+  .contact-card p { color: var(--ink-soft); line-height: 1.75; }
+  .contact-card a { color: var(--coral-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .contact-map { margin-top: 28px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); }
+  .contact-map iframe { display: block; width: 100%; height: 380px; border: 0; }
+  .contact-map-link { padding: 14px 20px; text-align: center; }
+  .contact-map-link a { color: var(--coral-deep); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .contact-next { margin-top: 40px; padding: 28px 32px; background: var(--surface); border-radius: var(--r-lg); text-align: center; }
+  .contact-next p { color: var(--ink-soft); margin: 8px 0 18px; }
+  .contact-network { margin-top: 72px; }
+  .contact-network > h2 { text-align: center; font-size: clamp(28px, 3.5vw, 40px); margin-bottom: 12px; }
+  .contact-network > p { max-width: 700px; margin: 0 auto 28px; color: var(--ink-soft); text-align: center; }
+  .contact-network .contact-card { background: var(--surface); }
+  .contact-help { margin-top: 72px; }
+  .contact-help > h2, .contact-faq > h2 { text-align: center; font-size: clamp(28px, 3.5vw, 40px); margin-bottom: 28px; }
+  .contact-help .contact-card { display: flex; flex-direction: column; align-items: flex-start; }
+  .contact-help .contact-card a { margin-top: auto; padding-top: 16px; font-weight: 600; }
+  .contact-faq { max-width: 820px; margin: 72px auto 0; }
+  .contact-policies { margin-top: 72px; }
+  .contact-policies > h2 { text-align: center; font-size: clamp(28px, 3.5vw, 40px); margin-bottom: 12px; }
+  .contact-policies > p { max-width: 700px; margin: 0 auto 28px; color: var(--ink-soft); text-align: center; }
+  .contact-policy-card { padding: 30px; background: var(--surface); border-radius: var(--r-lg); }
+  .contact-policy-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .contact-policy-card p { color: var(--ink-soft); line-height: 1.75; }
+  .contact-message-guide { margin-top: 40px; padding: 32px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--white); }
+  .contact-message-guide h2 { font-size: 24px; margin-bottom: 12px; }
+  .contact-message-guide p, .contact-message-guide li { color: var(--ink-soft); line-height: 1.75; }
+  .contact-message-guide ul { padding-left: 22px; margin: 12px 0 0; }
+  .contact-form-section { max-width: 820px; margin: 56px auto 0; padding: 36px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-lg); }
+  .contact-form-section h2 { font-size: 28px; margin-bottom: 8px; }
+  .contact-form-section > p { color: var(--ink-soft); margin-bottom: 24px; }
+  .contact-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .contact-form-grid .field { min-width: 0; }
+  .contact-form-grid .field.full { grid-column: 1 / -1; }
+  .contact-form-grid input, .contact-form-grid select, .contact-form-grid textarea { width: 100%; }
+  .contact-form-grid textarea { min-height: 150px; resize: vertical; }
+  .contact-form-note { min-height: 24px; margin-top: 12px; color: var(--ink-soft); font-size: 13px; }
+  @media (max-width: 600px) { .contact-form-section { padding: 26px 20px; } .contact-form-grid { grid-template-columns: 1fr; } .contact-form-grid .field.full { grid-column: auto; } }
+  @media (max-width: 760px) { .contact-page { padding: 52px 0 72px; } .contact-intro { width: calc(100% + 40px); min-height: 310px; margin: -52px -20px 44px; padding: 56px 20px; } .contact-grid { grid-template-columns: 1fr; } .contact-map iframe { height: 280px; } }
+  @media (max-width: 560px) { .contact-intro { width: calc(100% + 32px); margin-left: -16px; margin-right: -16px; } }
+</style>
+</head>
+<body>
+<div class="nav-overlay" id="navOverlay"></div>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+  <button class="search-overlay__close" id="searchClose" aria-label="Close search">×</button>
+  <div class="search-overlay__inner">
+    <label class="search-overlay__label" for="searchInput">Search Stackly</label>
+    <input class="search-overlay__input" id="searchInput" type="search" placeholder="Wool coat, silk dress…" autocomplete="off">
+    <div class="search-overlay__results" id="searchResults"></div>
+  </div>
+</div>
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false"><svg width="22" height="16" viewBox="0 0 22 16"><path d="M0 1h22M0 8h22M0 15h22" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button>
+    <a href="index.html" class="logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="logo-img"></a>
+    <nav class="main-nav" data-nav-menu aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="shop.html">Shop All</a><a href="about.html">About</a><a href="contact.html" class="is-active">Contact</a><a href="women.html">Women</a><a href="men.html">Men</a>
+    </nav>
+    <div class="header-icons">
+      <button class="icon-btn search-trigger" data-search-trigger aria-label="Search"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg></button>
+      <div class="header-auth"><a href="login.html" class="btn-login">Log In</a><a href="login.html#signup" class="btn-get-started">Get Started</a></div>
+      <a href="wishlist.html" class="icon-btn" aria-label="Wishlist"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span class="count-badge" data-wishlist-count>0</span></a>
+      <a href="cart.html" class="icon-btn" aria-label="Cart"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="count-badge" data-cart-count>0</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="contact-page">
+  <div class="wrap">
+    <div class="contact-intro">
+      <p class="eyebrow eyebrow--coral">We’re here to help</p>
+      <h1>Contact Stackly</h1>
+      <p>Questions about an order, a piece in the collection, or a garment repair? Reach our team using the contact details below.</p>
+    </div>
+    <div class="contact-grid">
+      <section class="contact-card">
+        <h2>Email</h2>
+        <p>For order, product, and general customer care questions, email us at <a href="mailto:hello@stackly.edu">hello@stackly.edu</a>.</p>
+      </section>
+      <section class="contact-card">
+        <h2>Call</h2>
+        <p>Speak with our team at <a href="tel:+919876543210">+91 98765 43210</a>.</p>
+      </section>
+      <section class="contact-card">
+        <h2>Visit</h2>
+        <p>MMR Complex, Chinna Thirupathi,<br>Salem, Tamil Nadu 636008,<br>India</p>
+      </section>
+    </div>
+    <section class="contact-map" aria-label="Map showing Stackly's Salem address">
+      <iframe title="Map to MMR Complex, Chinna Thirupathi, Salem" src="https://www.google.com/maps?q=MMR%20Complex%2C%20Chinna%20Thirupathi%2C%20Salem%2C%20Tamil%20Nadu%20636008%2C%20India&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <p class="contact-map-link"><a href="https://www.google.com/maps/search/?api=1&amp;query=MMR%20Complex%2C%20Chinna%20Thirupathi%2C%20Salem%2C%20Tamil%20Nadu%20636008%2C%20India" target="_blank" rel="noopener noreferrer">Open this address in Google Maps</a></p>
+    </section>
+    <section class="contact-form-section" aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title">Send us a message</h2>
+      <p>Complete the form and your email app will open with the message addressed to our customer care team.</p>
+      <form id="contactForm">
+        <div class="contact-form-grid">
+          <div class="field"><label for="contactName">Your name</label><input id="contactName" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="contactEmail">Email address</label><input id="contactEmail" name="email" type="email" autocomplete="email" required></div>
+          <div class="field full"><label for="contactTopic">What can we help with?</label><select id="contactTopic" name="topic" required><option value="" disabled selected>Select a topic</option><option>Order or delivery</option><option>Return or exchange</option><option>Product or sizing question</option><option>Garment repair</option><option>Other</option></select></div>
+          <div class="field full"><label for="contactOrder">Order number (if relevant)</label><input id="contactOrder" name="order" type="text" autocomplete="off"></div>
+          <div class="field full"><label for="contactMessage">Your message</label><textarea id="contactMessage" name="message" required></textarea></div>
+        </div>
+        <p class="contact-form-note" id="contactFormNote" aria-live="polite">This form opens your email app; it does not send or store your message on this site.</p>
+        <button class="btn btn--coral" type="submit">Continue to email</button>
+      </form>
+    </section>
+    <section class="contact-help" aria-labelledby="contact-help-title">
+      <h2 id="contact-help-title">How can we help?</h2>
+      <div class="contact-grid">
+        <article class="contact-card"><h2>Orders &amp; delivery</h2><p>For order updates or account help, have your order number ready and contact us by email or phone. You can also visit your account dashboard.</p><a href="dashboard.html">Go to account help →</a></article>
+        <article class="contact-card"><h2>Returns &amp; exchanges</h2><p>Returns and exchanges are free within 30 days of delivery. Items should be unworn, unwashed, and returned with their original packaging and tags.</p><a href="mailto:hello@stackly.edu?subject=Return%20or%20exchange">Ask about a return →</a></article>
+        <article class="contact-card"><h2>Product &amp; care</h2><p>Need help choosing a piece or caring for a natural fibre? Browse our care guide or send the team your question.</p><a href="care.html">Read the care guide →</a></article>
+      </div>
+    </section>
+    <section class="contact-policies" id="shopping-support" aria-labelledby="contact-policies-title">
+      <h2 id="contact-policies-title">Shopping support</h2>
+      <p>Here are a few quick details from our store policies. If your situation needs a closer look, contact the team and we’ll help.</p>
+      <div class="contact-grid">
+        <article class="contact-policy-card"><h3>Shipping</h3><p>We offer free shipping on orders over ₹1,500. For help with a shipment, contact us with your order number and checkout email.</p></article>
+        <article class="contact-policy-card"><h3>Returns &amp; exchanges</h3><p>Returns and exchanges are free within 30 days of delivery. Items must be unworn and unwashed, with original packaging and tags attached.</p></article>
+        <article class="contact-policy-card"><h3>Care &amp; longevity</h3><p>Our natural-fibre pieces are made for repeat wear. The care guide covers wool, cashmere, silk, and leather, and Stackly offers complimentary lifetime repairs.</p></article>
+      </div>
+    </section>
+    <section class="contact-message-guide" aria-labelledby="message-guide-title">
+      <h2 id="message-guide-title">Help us get you an answer faster</h2>
+      <p>When you email or call, share the details that match your question:</p>
+      <ul>
+        <li><strong>Order or delivery:</strong> your order number and the email address used at checkout.</li>
+        <li><strong>Return or exchange:</strong> your order number, item name, and whether you want a return or a different size.</li>
+        <li><strong>Product question:</strong> the product name and the detail you’d like help with, such as fit, fabric, or care.</li>
+        <li><strong>Repair:</strong> the item or order number and a short description of the damage. Use the <a href="care.html#repairForm">repair request form</a> to submit the details.</li>
+      </ul>
+    </section>
+    <section class="contact-next">
+      <h2>Need a garment repair?</h2>
+      <p>Stackly offers complimentary lifetime repairs for its pieces. Use our repair form or email us with your order number, item, and a description of the repair needed. Most repairs take 14 business days after the garment reaches our atelier; complex repairs may take up to 21 business days.</p>
+      <a class="btn btn--coral" href="care.html#repairForm">Request a repair</a>
+    </section>
+    <section class="contact-network" aria-labelledby="craft-network-title">
+      <h2 id="craft-network-title">Our craft locations</h2>
+      <p>These are the specialist locations behind Stackly’s materials and products. For customer service, please use the Salem contact details above.</p>
+      <div class="contact-grid">
+        <article class="contact-card"><h2>Biella, Italy</h2><p>Wool and cashmere spinning, using Alpine water to wash fibres.</p></article>
+        <article class="contact-card"><h2>Porto, Portugal</h2><p>Leather goods and footwear, made with traditional hand-stitching techniques.</p></article>
+        <article class="contact-card"><h2>Okayama, Japan</h2><p>Selvedge denim woven on vintage Toyoda shuttle looms.</p></article>
+      </div>
+    </section>
+    <section class="contact-faq" aria-labelledby="contact-faq-title">
+      <h2 id="contact-faq-title">Helpful information</h2>
+      <div class="faq-wrap accordion">
+        <details class="accordion-item">
+          <summary>What should I include when contacting customer care?</summary>
+          <div>For an order question, include your order number and the email address used at checkout. For a product question, include the item name. For a repair request, use the repair form and describe the issue with the garment.</div>
+        </details>
+        <details class="accordion-item">
+          <summary>How long do repairs take?</summary>
+          <div>Most repairs are completed within 14 business days after the atelier receives the garment. Complex repairs can take up to 21 days. Stackly provides a prepaid label and covers return shipping for eligible lifetime repairs.</div>
+        </details>
+        <details class="accordion-item">
+          <summary>Where are Stackly pieces made?</summary>
+          <div>Stackly garments are designed in London and produced by specialist family-run ateliers in Biella, Italy; Porto, Portugal; and Okayama, Japan.</div>
+        </details>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-top"><div class="footer-grid">
+    <div><a href="index.html" class="footer-logo"><img src="stackly_ (1).webp" alt="Stackly Logo" class="footer-logo-img"></a><p class="footer-tagline">Considered clothing made to last. Natural fibres, timeless design, built for years of wear.</p><div class="footer-socials" role="group" aria-label="Social media">
+          <a class="social-icon" href="404.html" aria-label="Google" title="Google"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M21.35 12.23c0-.72-.06-1.42-.18-2.09H12v3.95h5.23a4.48 4.48 0 0 1-1.94 2.94v2.46h3.14c1.84-1.69 2.92-4.18 2.92-7.26ZM12 21.75c2.63 0 4.84-.87 6.45-2.36l-3.14-2.46c-.87.58-1.98.92-3.31.92-2.54 0-4.7-1.71-5.47-4.01H3.28v2.54A9.75 9.75 0 0 0 12 21.75ZM6.53 13.84a5.85 5.85 0 0 1 0-3.68V7.62H3.28a9.75 9.75 0 0 0 0 8.76l3.25-2.54ZM12 6.15c1.43 0 2.72.49 3.73 1.47l2.8-2.8A9.36 9.36 0 0 0 12 2.25a9.75 9.75 0 0 0-8.72 5.37l3.25 2.54C7.3 7.86 9.46 6.15 12 6.15Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="X (Twitter)" title="X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.4 5.4 22H2.2l7.3-8.4L1.7 2h6.5l4.4 6.9L18.9 2Zm-1.1 17.9h1.7L7.2 4H5.4l12.4 15.9Z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.3V10H7.3v3h2.8v8z"/></svg></a>
+          <a class="social-icon" href="404.html" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M23 7a3 3 0 0 0-2.1-2.1C19 4.4 12 4.4 12 4.4s-7 0-8.9.5A3 3 0 0 0 1 7a31 31 0 0 0-.5 5 31 31 0 0 0 .5 5 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5A3 3 0 0 0 23 17a31 31 0 0 0 .5-5 31 31 0 0 0-.5-5zM10 15.5v-7l6 3.5z"/></svg></a>
+        </div></div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="shop.html">Shop All</a></li><li><a href="about.html">About</a></li><li><a href="contact.html">Contact</a></li><li><a href="women.html">Women</a></li><li><a href="men.html">Men</a></li></ul></div>
+    <div class="footer-col"><h4>Services</h4>
+        <ul>
+          <li><a href="404.html">Footwear</a></li>
+          <li><a href="404.html">Accessories</a></li>
+          <li><a href="404.html">Garment Care &amp; Repairs</a></li>
+          <li><a href="404.html">Tracker</a></li>
+          <li><a href="404.html">Shipping &amp; Returns</a></li>
+          <li><a href="404.html">Customer Care</a></li>
+        </ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-contact"><li><a href="mailto:hello@stackly.edu">hello@stackly.edu</a></li><li><a href="tel:+919876543210">+91 98765 43210</a></li><li>MMR Complex, Chinna Thirupathi,<br>Salem, Tamil Nadu 636008, India</li></ul></div>
+  </div></div>
+  <div class="wrap footer-bottom"><span>&copy; 2026 Stackly. All rights reserved.</span><div class="footer-bottom__links"><a href="404.html">Privacy Policy</a><a href="404.html">Terms of Service</a></div></div>
+</footer>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+
+    const values = new FormData(form);
+    const subject = `[Stackly Contact] ${values.get('topic')}`;
+    const body = [
+      `Name: ${values.get('name')}`,
+      `Email: ${values.get('email')}`,
+      `Topic: ${values.get('topic')}`,
+      `Order number: ${values.get('order') || 'Not provided'}`,
+      '',
+      values.get('message')
+    ].join('\n');
+    window.location.href = `mailto:hello@stackly.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+<script src="js/route-content-buttons-404.js"></script>
+</body>
+</html>

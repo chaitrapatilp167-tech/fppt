@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Sign In or Register — Stackly considered clothing.">
+<title>Account — Stackly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-body);
+  }
+
+  /* ── Full-page background image ── */
+  .auth-page {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=35&w=900&fm=webp&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  /* Dark overlay for readability */
+  .auth-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 12, 9, 0.55);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .auth-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 480px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow:
+      0 4px 6px rgba(0,0,0,.03),
+      0 16px 40px rgba(0,0,0,.08),
+      0 0 0 1px rgba(0,0,0,.04);
+    padding: 52px 48px 44px;
+    animation: fadeUp .6s ease-out;
+  }
+
+  .auth-logo-wrap {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .auth-logo-wrap img {
+    height: 52px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+  .auth-logo-wrap-above {
+    text-align: center;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .auth-logo-wrap-above img {
+    height: 52px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  /* ── Tab switcher ── */
+  .auth-tabs {
+    display: flex;
+    background: #f1ede7;
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 32px;
+    gap: 0;
+  }
+  .auth-tab {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .auth-tab.is-active {
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 1px 6px rgba(0,0,0,.1);
+  }
+
+  /* ── Social buttons ── */
+  .social-auth-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .btn--social {
+    background: #fff;
+    border: 1.5px solid #e2ddd6;
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 18px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    width: 100%;
+    text-transform: none;
+    letter-spacing: 0;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+  }
+  .btn--social:hover {
+    border-color: #c8c0b6;
+    background: #faf9f7;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+
+  /* ── Divider ── */
+  .auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .auth-divider::before,
+  .auth-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e8e2da;
+  }
+  .auth-divider span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: #b0a898;
+  }
+
+  /* ── Auth Panel ── */
+  .auth-panel { display: none; }
+  .auth-panel.is-active { display: block; }
+
+  .auth-panel h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .auth-panel .auth-sub {
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    line-height: 1.55;
+  }
+
+  /* ── Float fields ── */
+  .float-field {
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .float-field input {
+    width: 100%;
+    padding: 16px 16px 8px;
+    border: 1.5px solid #e2ddd6;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--ink);
+    background: #fafaf9;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+  .float-field input:focus {
+    border-color: var(--coral);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(232,80,26,.1);
+  }
+  .float-field label {
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    font-size: 14px;
+    color: #a09488;
+    pointer-events: none;
+    transition: all .18s ease;
+    background: transparent;
+  }
+  .float-field input:focus ~ label,
+  .float-field input:not(:placeholder-shown) ~ label {
+    top: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--coral);
+  }
+  .float-field__pw-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #a09488;
+    padding: 4px;
+    transition: color .2s;
+  }
+  .float-field__pw-toggle:hover { color: var(--ink); }
+
+  /* ── Remember / forgot row ── */
+  .auth-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+  .auth-meta-row label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .auth-meta-row input[type="checkbox"] {
+    accent-color: var(--coral);
+    width: 15px;
+    height: 15px;
+  }
+  .auth-meta-row a {
+    color: var(--coral);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .auth-meta-row a:hover { text-decoration: underline; }
+
+  /* ── Submit button ── */
+  .btn-auth-submit {
+    width: 100%;
+    padding: 15px;
+    background: var(--coral);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .2s, transform .2s, box-shadow .2s;
+    margin-top: 4px;
+  }
+  .btn-auth-submit:hover {
+    background: var(--coral-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(232,80,26,.35);
+  }
+  .btn-auth-submit:active { transform: translateY(0); }
+
+  /* ── Auth note ── */
+  .auth-note {
+    font-size: 13px;
+    color: var(--moss);
+    font-weight: 600;
+    min-height: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  /* ── Switch link ── */
+  .auth-switch {
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 22px;
+  }
+  .auth-switch button {
+    background: none;
+    border: none;
+    color: var(--coral);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+  }
+
+  /* ── Member benefits ── */
+  .member-benefits {
+    background: #faf8f5;
+    border: 1px solid #ede8e0;
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-top: 28px;
+  }
+  .member-benefits h4 {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .member-benefits ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .member-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .member-benefits li span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--coral);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Role Selector ── */
+  .role-select-wrap {
+    margin-bottom: 22px;
+  }
+  .role-select-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    display: block;
+  }
+  .role-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .role-card {
+    position: relative;
+    border: 1.5px solid #e2ddd6;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    background: #fafaf9;
+    transition: all .2s ease;
+  }
+  .role-card:hover {
+    border-color: #c8c0b6;
+    background: #fff;
+  }
+  .role-card input[type="radio"] {
+    accent-color: var(--coral);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  .role-card.is-active {
+    border-color: var(--coral);
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(232,80,26,.12);
+  }
+  .role-info strong {
+    display: block;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .role-info span {
+    display: block;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  /* ── Return link ── */
+  .auth-return {
+    text-align: center;
+    margin-top: 28px;
+  }
+  .auth-return a {
+    font-size: 13px;
+    color: #a09488;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .auth-return a:hover { color: var(--coral); }
+
+  @media (max-width: 540px) {
+    .auth-card { padding: 40px 28px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-label="Search">
+  <button class="search-overlay__close" id="searchClose" aria-label="Close search">×</button>
+  <div class="search-overlay__inner">
+    <label class="search-overlay__label" for="searchInput">Search Stackly</label>
+    <input class="search-overlay__input" id="searchInput" type="search" placeholder="Wool coat, silk dress…" autocomplete="off">
+    <div class="search-overlay__results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="auth-page">
+  <div style="display:flex; flex-direction:column; align-items:center; width:100%; max-width:480px; position:relative; z-index:1;">
+
+    <!-- Logo — sits on dark background image, white and visible -->
+    <div class="auth-logo-wrap-above">
+      <a href="index.html">
+        <img src="stackly_ (1).webp" alt="Stackly Logo">
+      </a>
+    </div>
+
+    <div class="auth-card">
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab is-active" data-tab="signin">Sign In</button>
+      <button class="auth-tab" data-tab="signup">Get Started</button>
+    </div>
+
+    <!-- Social Auth -->
+    <div class="social-auth-buttons">
+      <button class="btn--social" type="button" onclick="showToast('Signed in with Google', 'success')">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.29v3.15C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.29C.47 8.2.0 10.04.0 12s.47 3.8 1.29 5.42l3.99-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.31 0 3.26 2.7 1.29 6.58l3.99 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+        Continue with Google
+      </button>
+      <button class="btn--social" type="button" onclick="showToast('Signed in with Apple', 'success')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.82c.66-.8 1.11-1.92.99-3.04-.96.04-2.13.64-2.81 1.44-.61.71-1.14 1.86-.99 2.96 1.07.08 2.16-.55 2.81-1.36z"/></svg>
+        Continue with Apple
+      </button>
+    </div>
+
+    <!-- Divider -->
+    <div class="auth-divider"><span>or with email</span></div>
+
+    <!-- ── SIGN IN PANEL ── -->
+    <div class="auth-panel is-active" id="panel-signin">
+      <h2>Welcome back</h2>
+      <p class="auth-sub">Sign in to access your orders, wishlist, and member privileges.</p>
+
+      <form id="signinForm" novalidate>
+        <!-- Role Selector -->
+        <div class="role-select-wrap">
+          <span class="role-select-title">Select Account Role</span>
+          <div class="role-options">
+            <label class="role-card is-active" id="siRoleCustomerCard">
+              <input type="radio" name="siRole" value="customer" checked>
+              <div class="role-info">
+                <strong>Customer</strong>
+                <span>Personal &amp; Shopper</span>
+              </div>
+            </label>
+            <label class="role-card" id="siRoleAdminCard">
+              <input type="radio" name="siRole" value="admin">
+              <div class="role-info">
+                <strong>Store Admin</strong>
+                <span>Management &amp; Staff</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="float-field">
+          <input type="email" id="siEmail" placeholder=" " required autocomplete="email">
+          <label for="siEmail">Email Address</label>
+        </div>
+        <div class="float-field">
+          <input type="password" id="siPassword" placeholder=" " required minlength="8" autocomplete="current-password">
+          <label for="siPassword">Password</label>
+          <button type="button" class="float-field__pw-toggle" id="toggleSiPw" aria-label="Toggle password">👁</button>
+        </div>
+        <div class="auth-meta-row">
+          <label>
+            <input type="checkbox"> Remember me
+          </label>
+          <a href="404.html">Forgot password?</a>
+        </div>
+        <p class="auth-note" id="signinNote"></p>
+        <button type="submit" class="btn-auth-submit">Sign In &amp; Go to Dashboard</button>
+      </form>
+
+      <p class="auth-switch">New to Stackly? <button type="button" data-switch="signup">Create a free account →</button></p>
+    </div>
+
+    <!-- ── GET STARTED PANEL ── -->
+    <div class="auth-panel" id="panel-signup">
+      <h2>Create your account</h2>
+      <p class="auth-sub">Join the Stackly community for early access to new arrivals and private sales.</p>
+
+      <form id="signupForm" novalidate>
+        <div class="float-field">
+          <input type="text" id="suName" placeholder=" " required autocomplete="name">
+          <label for="suName">Full Name</label>
+        </div>
+        <div class="float-field">
+          <input type="email" id="suEmail" placeholder=" " required autocomplete="email">
+          <label for="suEmail">Email Address</label>
+        </div>
+        <div class="float-field">
+          <input type="password" id="suPassword" placeholder=" " required minlength="8" autocomplete="new-password">
+          <label for="suPassword">Password (6+ characters)</label>
+          <button type="button" class="float-field__pw-toggle" id="toggleSuPw" aria-label="Toggle password">👁</button>
+        </div>
+        <div class="float-field">
+          <input type="password" id="suConfirm" placeholder=" " required minlength="8" autocomplete="new-password">
+          <label for="suConfirm">Confirm Password</label>
+          <button type="button" class="float-field__pw-toggle" id="toggleSuConfirm" aria-label="Toggle confirm password">👁</button>
+        </div>
+        <p class="auth-note" id="signupNote"></p>
+        <button type="submit" class="btn-auth-submit">Create Account &amp; Continue to Sign In</button>
+      </form>
+
+      <!-- Member Benefits -->
+      <div class="member-benefits">
+        <h4>Member Privileges</h4>
+        <ul>
+          <li><span>✓</span> Free Express Shipping on all orders</li>
+          <li><span>✓</span> Priority access to seasonal launches &amp; private sales</li>
+          <li><span>✓</span> Complimentary lifetime garment repair service</li>
+        </ul>
+      </div>
+
+      <p class="auth-switch">Already have an account? <button type="button" data-switch="signin">Sign in →</button></p>
+    </div>
+
+    <!-- Return link -->
+    <div class="auth-return">
+      <a href="index.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Return to Stackly Store
+      </a>
+    </div>
+
+  </div><!-- end auth-card -->
+  </div><!-- end outer wrapper -->
+</div><!-- end auth-page -->
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Check for #signup in URL to open signup tab
+  if (window.location.hash === '#signup') {
+    setTab('signup');
+  }
+  if (new URLSearchParams(window.location.search).get('registered') === '1') {
+    setTab('signin');
+    const account = readStore(STORE_KEYS.user);
+    if (account?.email) document.getElementById('siEmail').value = account.email;
+    const signinNote = document.getElementById('signinNote');
+    signinNote.style.color = '#4caf7d';
+    signinNote.textContent = '✓ Account created. Please sign in to continue.';
+  }
+
+  function setTab(name) {
+    document.querySelectorAll(".auth-tab").forEach(t => t.classList.toggle("is-active", t.dataset.tab === name));
+    document.querySelectorAll(".auth-panel").forEach(p => p.classList.toggle("is-active", p.id === `panel-${name}`));
+  }
+
+  document.querySelectorAll(".auth-tab").forEach(t => t.addEventListener("click", () => setTab(t.dataset.tab)));
+  document.querySelectorAll("[data-switch]").forEach(b => b.addEventListener("click", () => setTab(b.dataset.switch)));
+
+  // Role selection highlighting helper
+  function setupRoleSelection(groupName) {
+    const radios = document.querySelectorAll(`input[name="${groupName}"]`);
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        radios.forEach(r => {
+          const card = r.closest('.role-card');
+          if (card) card.classList.toggle('is-active', r.checked);
+        });
+      });
+    });
+  }
+  setupRoleSelection('siRole');
+  setupRoleSelection('suRole');
+
+  function bindPwToggle(btnId, inputId) {
+    const btn = document.getElementById(btnId);
+    const input = document.getElementById(inputId);
+    if (!btn || !input) return;
+    btn.addEventListener("click", () => {
+      const isPw = input.type === "password";
+      input.type = isPw ? "text" : "password";
+      btn.textContent = isPw ? "🙈" : "👁";
+    });
+  }
+  bindPwToggle("toggleSiPw", "siPassword");
+  bindPwToggle("toggleSuPw", "suPassword");
+  bindPwToggle("toggleSuConfirm", "suConfirm");
+
+  // Live confirm-password match indicator
+  const suConfirmEl = document.getElementById("suConfirm");
+  const suPasswordEl = document.getElementById("suPassword");
+  suConfirmEl.addEventListener("input", () => {
+    const note = document.getElementById("signupNote");
+    if (suConfirmEl.value && suPasswordEl.value !== suConfirmEl.value) {
+      suConfirmEl.style.borderColor = "#e55";
+      note.style.color = "#e55";
+      note.textContent = "✕ Passwords do not match";
+    } else if (suConfirmEl.value && suPasswordEl.value === suConfirmEl.value) {
+      suConfirmEl.style.borderColor = "#4caf7d";
+      note.style.color = "#4caf7d";
+      note.textContent = "✓ Passwords match";
+    } else {
+      suConfirmEl.style.borderColor = "";
+      note.textContent = "";
+    }
+  });
+
+  document.getElementById("signinForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const email = document.getElementById("siEmail").value;
+    const role  = document.querySelector('input[name="siRole"]:checked')?.value || 'customer';
+    if (!email) return;
+    writeStore(STORE_KEYS.user, { email, name: email.split("@")[0], role });
+    showToast(`Signed in as ${role === 'admin' ? 'Store Admin' : 'Customer'}!`, "success");
+    document.getElementById("signinNote").textContent = "✓ Signed in successfully. Redirecting to Dashboard…";
+    setTimeout(() => { window.location.href = "dashboard.html"; }, 1000);
+  });
+
+  document.getElementById("signupForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const name  = document.getElementById("suName").value;
+    const email = document.getElementById("suEmail").value;
+    const pw    = document.getElementById("suPassword").value;
+    const cpw   = document.getElementById("suConfirm").value;
+    const note  = document.getElementById("signupNote");
+    if (!name || !email) return;
+    if (pw !== cpw) {
+      note.style.color = "#e55";
+      note.textContent = "✕ Passwords do not match. Please check and try again.";
+      suConfirmEl.focus();
+      return;
+    }
+    writeStore(STORE_KEYS.user, { email, name, role: 'customer' });
+    showToast("Welcome to Stackly!", "success");
+    note.style.color = "#4caf7d";
+    note.textContent = "✓ Account created! Redirecting to Sign In…";
+    setTimeout(() => { window.location.href = "login.html?registered=1"; }, 1000);
+  });
+});
+</script>
+<script src="js/route-content-buttons-404.js"></script>
+</body>
+</html>
